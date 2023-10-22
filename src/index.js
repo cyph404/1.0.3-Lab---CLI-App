@@ -31,7 +31,6 @@ const getRandomIntInRange = (min, max) => Math.floor((Math.random() * (max - min
 const checkAnswer = (guess, answer) => {
   if (isNaN(guess) || guess > 10 || guess < 1) return 'You have to guess a number between 1 and 10!'
   if (guess === answer) return 'Congratulations, you won'
-  console.log(isNaN(guess))
   return `The computer chose ${answer}, better luck next time!`
 };
 
