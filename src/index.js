@@ -69,21 +69,6 @@ const handleCheerYouOn = () => {
 
 }
 
-const handleSubmit = () => {
-  const option = getUserNumber();
-    switch (option) {
-      case 1:
-        handleGuessingGame();
-        break;
-      case 2:
-        handleWordsOfWisdom();
-        break;
-      case 3:
-        handleCheerYouOn();
-        break;
-    }
-};
-
 const main = () => {
   const name = welcomeAndGetName();
   while (true) {
