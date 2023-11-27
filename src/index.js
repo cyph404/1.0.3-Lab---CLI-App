@@ -8,6 +8,7 @@ const welcomeAndGetName = () => {
   console.log('Welcome!');
   const name = prompt('What is your name? ');
   console.log(`Hello ${name.trim()}, nice to meet you!`);
+  createSpace()
   return name.trim();
 };
 
@@ -22,11 +23,12 @@ const showOptions = () => {
   console.log('2 - words of wisdom');
   console.log('3 - cheer you on');
   console.log('Any other key - exit');
+  createSpace()
 };
 
 const sayGoodbye = (name) => console.log(`Goodbye, ${name}`);
 
-const getRandomIntInRange = (min, max) => Math.floor((Math.random() * (max - min)) + min) + 1;
+const getRandomIntInRange = (min, max) => Math.floor((Math.random() * (max - min)) + min);
 
 const checkAnswer = (guess, answer) => {
   if (isNaN(guess) || guess > 10 || guess < 1) return 'You have to guess a number between 1 and 10!'
@@ -39,7 +41,7 @@ const handleGuessingGame = () => {
   const answer = getRandomIntInRange(0, 11);
   const result = checkAnswer(guess, answer);
   console.log(result);
-  pseudoLooper()
+
 };
 
 const handleWordsOfWisdom = () => {
@@ -52,7 +54,6 @@ const handleWordsOfWisdom = () => {
     'Try to listen more than you speak',
   ];
   console.log(wordsOfWisdom[getRandomIntInRange(0, wordsOfWisdom.length)]);
- pseudoLooper()
 };
 
 const handleCheerYouOn = () => {
@@ -65,7 +66,7 @@ const handleCheerYouOn = () => {
     "Can't even handle your greatness right now!",
   ];
   console.log(cheers[getRandomIntInRange(0, cheers.length)])
-  pseudoLooper()
+
 }
 
 const handleSubmit = () => {
@@ -83,22 +84,28 @@ const handleSubmit = () => {
     }
 };
 
-const pseudoLooper = () => {
-  const continuity = prompt('Press any key to continue.', {echo: ''})
-  createSpace()
-  showOptions()
-  createSpace()
-  handleSubmit()
-  createSpace()
-}
-
 const main = () => {
   const name = welcomeAndGetName();
-  createSpace()
-  const options = showOptions();
-  createSpace()
-  const submission = handleSubmit();
-  const goodbye = sayGoodbye(name);
+  while (true) {
+    showOptions();
+    const option = getUserNumber();
+
+    switch (option) {
+      case 1:
+        handleGuessingGame();
+        break;
+      case 2:
+        handleWordsOfWisdom();
+        break;
+      case 3:
+        handleCheerYouOn();
+        break;
+      default:
+        sayGoodbye(name);
+        return;
+    }
+    console.log('')
+  }
 };
 
 main();
